@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+>
+
+<h:head/>
+<h:body>
+    <h:body>
+        <h2>#{supplierDetails.supplier.name} details</h2>
+        <p>Country: #{supplierDetails.supplier.country}</p>
+        <p>Coffee type: #{supplierDetails.supplier.type}</p>
+        <p>Coffee shops we supply to:</p>
+        <ol>
+            <ui:repeat value="#{supplierDetails.supplier.shops}" var="shop">
+                <li><h:link value="#{shop.name}" outcome="menu?shopId=#{shop.id}" /></li>
+            </ui:repeat>
+        </ol>
+        <h:link outcome="suppliers" value="Back to the suppliers"/>
+    </h:body>
+</h:body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://java.sun.com/jsf/core"
+>
+<h:head/>
+<h:body>
+    <h:body>
+        <h2>#{updateProductDetails.product.name} details</h2>
+        <p>Price: #{updateProductDetails.product.price}</p>
+        <p>Description: #{updateProductDetails.product.description}</p>
+        <h:form>
+            <h:outputText value="price: "/>
+            <h:inputText a:placeholder="enter the value" value="#{updateProductDetails.product.price}" required="true" />
+            <h:commandButton value="update" action="#{updateProductDetails.updateProduct()}">
+                <f:param name="productId" value="#{updateProductDetails.product.id}" />
+            </h:commandButton>
+            <h:outputText value="Value was already modified by other user. If you want to override it - try again" rendered="#{param['error'] == 'optimistic-lock-exception'}" />
+        </h:form>
+        <h:form>
+            <h:outputText value="description: "/>
+            <h:inputText a:placeholder="enter the value" value="#{updateProductDetails.product.description}" required="true" />
+            <h:commandButton value="update" action="#{updateProductDetails.updateProduct()}">
+                <f:param name="productId" value="#{updateProductDetails.product.id}" />
+            </h:commandButton>
+            <h:outputText value="Value was already modified by other user. If you want to override it - try again" rendered="#{param['error'] == 'optimistic-lock-exception'}" />
+        </h:form>
+        <h:link outcome="menu.xhtml?shopId=#{updateProductDetails.product.getShop().getId()}&amp;faces-redirect=true" value="Back to the menu"/>
+    </h:body>
+</h:body>
+</html>
