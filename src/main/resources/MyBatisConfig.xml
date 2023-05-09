@@ -4,8 +4,8 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <typeAliases>
-        <typeAlias type="com.example.laboratorinis_psk.mybatis.model.Team" alias="CoffeeShop"/>
-        <typeAlias type="com.example.laboratorinis_psk.mybatis.model.Player" alias="Product"/>
+        <typeAlias type="com.example.laboratorinis_psk.mybatis.model.Coffeeshop" alias="CoffeeShop"/>
+        <typeAlias type="com.example.laboratorinis_psk.mybatis.model.Product" alias="Product"/>
         <typeAlias type="com.example.laboratorinis_psk.mybatis.model.Supplier" alias="Supplier"/>
     </typeAliases>
     <environments default="development">
@@ -17,9 +17,9 @@
         </environment>
     </environments>
     <mappers>
-        <mapper resource="mybatis.xml/ShopMapper.xml"/>
+        <mapper resource="mybatis.xml/CoffeeshopMapper.xml"/>
         <mapper resource="mybatis.xml/ProductMapper.xml"/>
         <mapper resource="mybatis.xml/SupplierMapper.xml"/>
-        <mapper resource="mybatis.xml/SuppliersShopsMapper.xml"/>
+        <mapper resource="mybatis.xml/SupplierCoffeeshopMapper.xml"/>
     </mappers>
 </configuration>
