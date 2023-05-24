@@ -21,8 +21,24 @@
         <h:inputText a:placeholder="description" value="#{menu.productToCreate.description}" required="false" />
         <h:commandButton value="Add a new item to the menu"
                          actionListener="#{menu.createProduct()}"
-                         action="#{'menu?faces-redirect=true&amp;teamId='.concat(menu.shop.id)}">
+                         action="#{'menu?faces-redirect=true&amp;shopId='.concat(menu.shop.id)}">
             <f:param name="shopId" value="#{menu.shop.id}" />
+        </h:commandButton>
+    </h:form>
+    <br/>
+    <h2>EMPLOYEES</h2>
+    <h:form>
+        <h:outputText value="Amount of employees #{menu.shop.name} has: "/>
+        <h:inputText a:placeholder="enter the value" value="#{updateShopDetails.shop.employeesNum}" required="true" />
+        <h:commandButton value="update" action="#{updateShopDetails.updateShop()}">
+            <f:param name="shopId" value="#{updateShopDetails.shop.id}" />
+        </h:commandButton>
+        <h:outputText value="Value was already modified by other user. If you want to override it - try again" rendered="#{param['error'] == 'optimistic-lock-exception'}" />
+    </h:form>
+    <h:form>
+        <h:outputText value="#{generateEmployeesNumber.employeesGenerationStatus}" />
+        <h:commandButton value="Generate employees number?" disabled="#{generateEmployeesNumber.employeesGenerationRunning}" action="#{generateEmployeesNumber.generateNewEmployeesNumber()}">
+            <f:param name="shopId" value="#{updateShopDetails.shop.id}"/>
         </h:commandButton>
     </h:form>
     <br/>

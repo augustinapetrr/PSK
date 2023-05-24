@@ -32,6 +32,10 @@ public class Product {
     @Column(name = "PRICE")
     private Integer price;
 
+    @Version
+    @Column(name = "OPT_LOCK_VERSION")
+    private Integer version;
+
     @ManyToOne
     @JoinColumn(name="SHOP_ID")
     private CoffeeShop shop;

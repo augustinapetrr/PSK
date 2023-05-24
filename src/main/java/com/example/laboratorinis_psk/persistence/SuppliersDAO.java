@@ -28,4 +28,8 @@ public class SuppliersDAO {
     public Supplier findOne(Integer id) {
         return em.find(Supplier.class, id);
     }
+
+    public Supplier update(Supplier supplier){
+        return em.merge(supplier);
+    }
 }

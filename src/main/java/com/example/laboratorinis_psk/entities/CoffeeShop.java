@@ -25,6 +25,8 @@ public class CoffeeShop {
 
     private String name;
 
+    private Integer employeesNum;
+
     /*@Basic (optional = false)
     public String getName() {
         return name;

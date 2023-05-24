@@ -6,7 +6,13 @@
                       http://xmlns.jcp.org/xml/ns/javaee/beans_1_1.xsd"
         bean-discovery-mode="annotated">
 
+    <alternatives>
+        <class>com.example.laboratorinis_psk.alternatives.AltMessage</class>
+    </alternatives>
     <interceptors>
         <class>com.example.laboratorinis_psk.interceptors.MethodLogger</class>
     </interceptors>
+    <decorators>
+        <class>com.example.laboratorinis_psk.decorators.DecoratorImpl</class>
+    </decorators>
 </beans>

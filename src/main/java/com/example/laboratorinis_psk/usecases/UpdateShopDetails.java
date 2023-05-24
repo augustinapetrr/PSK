@@ -1,11 +1,11 @@
 package com.example.laboratorinis_psk.usecases;
 
 
+import com.example.laboratorinis_psk.entities.CoffeeShop;
+import com.example.laboratorinis_psk.persistence.ShopsDAO;
 import lombok.Getter;
 import lombok.Setter;
-import com.example.laboratorinis_psk.entities.Product;
 import com.example.laboratorinis_psk.interceptors.LoggedInvocation;
-import com.example.laboratorinis_psk.persistence.ProductsDAO;
 
 import javax.annotation.PostConstruct;
 import javax.faces.context.FacesContext;
@@ -20,31 +20,30 @@ import java.util.Map;
 @ViewScoped
 @Named
 @Getter @Setter
-public class UpdateProductDetails implements Serializable {
+public class UpdateShopDetails implements Serializable {
 
-    private Product product;
+    private CoffeeShop shop;
 
     @Inject
-    private ProductsDAO productsDAO;
+    private ShopsDAO shopsDAO;
 
     @PostConstruct
     private void init() {
-        System.out.println("UpdateProductDetails INIT CALLED");
+        System.out.println("UpdateShopDetails INIT CALLED");
         Map<String, String> requestParameters =
                 FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
-        Integer productId = Integer.parseInt(requestParameters.get("productId"));
-        this.product = productsDAO.findOne(productId);
+        Integer shopId = Integer.parseInt(requestParameters.get("shopId"));
+        this.shop = shopsDAO.findOne(shopId);
     }
 
     @Transactional
     @LoggedInvocation
-    public String updateProduct() {
+    public String updateShop() {
         try{
-            productsDAO.update(this.product);
+            shopsDAO.update(this.shop);
         } catch (OptimisticLockException e) {
-            //this.product = productsDAO.findOne(this.product.getId());
-            return "/productDetails.xhtml?faces-redirect=true&productId=" + this.product.getId() + "&error=optimistic-lock-exception";
+            return "/menu.xhtml?faces-redirect=true&shopId=" + this.shop.getId() + "&error=optimistic-lock-exception";
         }
-        return "menu.xhtml?shopId=" + this.product.getShop().getId() + "&faces-redirect=true";
+        return "menu.xhtml?shopId=" + this.shop.getId() + "&faces-redirect=true";
     }
 }

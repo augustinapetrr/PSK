@@ -1,6 +1,7 @@
 package com.example.laboratorinis_psk.persistence;
 
 import com.example.laboratorinis_psk.entities.CoffeeShop;
+import com.example.laboratorinis_psk.entities.Product;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -27,5 +28,9 @@ public class ShopsDAO {
 
     public CoffeeShop findOne(Integer id) {
         return em.find(CoffeeShop.class, id);
+    }
+
+    public CoffeeShop update(CoffeeShop shop){
+        return em.merge(shop);
     }
 }
